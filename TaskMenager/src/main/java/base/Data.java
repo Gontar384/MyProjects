@@ -78,63 +78,25 @@ public class Data {
     }
 
     public void byMonth(){
+        HashMap<String,String> monthsMap = new HashMap<>();
+        monthsMap.put("1","Jan"); monthsMap.put("01","Jan"); monthsMap.put("january", "Jan"); monthsMap.put("jan", "Jan");
+        monthsMap.put("2","Feb"); monthsMap.put("02","Feb"); monthsMap.put("february", "Feb"); monthsMap.put("feb", "Feb");
+        monthsMap.put("3","Mar"); monthsMap.put("03","Mar"); monthsMap.put("march", "Mar"); monthsMap.put("mar", "Mar");
+        monthsMap.put("4","Apr"); monthsMap.put("04","Apr"); monthsMap.put("april", "Apr"); monthsMap.put("apr", "Apr");
+        monthsMap.put("5","May"); monthsMap.put("05","May"); monthsMap.put("may", "May");
+        monthsMap.put("6","Jun"); monthsMap.put("06","Jun"); monthsMap.put("june", "Jun"); monthsMap.put("jun", "Jun");
+        monthsMap.put("7","Jul"); monthsMap.put("07","Jul"); monthsMap.put("july", "Jul"); monthsMap.put("jul", "Jul");
+        monthsMap.put("8","Aug"); monthsMap.put("08","Aug"); monthsMap.put("august", "Aug"); monthsMap.put("aug", "Aug");
+        monthsMap.put("9","Sep"); monthsMap.put("09","Sep"); monthsMap.put("september", "Sep"); monthsMap.put("sep", "Sep");
+        monthsMap.put("10","Oct"); monthsMap.put("october", "Oct"); monthsMap.put("oct", "Oct");
+        monthsMap.put("11","Nov"); monthsMap.put("november", "Nov"); monthsMap.put("nov", "Nov");
+        monthsMap.put("12","Dec"); monthsMap.put("december", "Dec"); monthsMap.put("dec", "Dec");
 
         System.out.println("Enter month");
-        String userMonth = sc.nextLine();
+        String userMonth = monthsMap.get(sc.nextLine().toLowerCase());
 
-
-        if (userMonth.equals("1") || userMonth.equals("01") || userMonth.equals("january") ||
-                userMonth.equals("January") || userMonth.equals("jan") || userMonth.equals("Jan") ){
-            userMonth = "Jan";
-        }
-        if (userMonth.equals("2") || userMonth.equals("02") || userMonth.equals("february") ||
-                userMonth.equals("February") || userMonth.equals("feb") || userMonth.equals("Feb") ){
-            userMonth = "Feb";
-        }
-        if (userMonth.equals("3") || userMonth.equals("03") || userMonth.equals("march") ||
-                userMonth.equals("March") || userMonth.equals("mar") || userMonth.equals("Mar") ){
-            userMonth = "Mar";
-        }
-        if (userMonth.equals("4") || userMonth.equals("04") || userMonth.equals("april") ||
-                userMonth.equals("April") || userMonth.equals("apr") || userMonth.equals("Apr") ){
-            userMonth = "Apr";
-        }
-        if (userMonth.equals("5") || userMonth.equals("05") || userMonth.equals("may") ||
-                userMonth.equals("May") ){
-            userMonth = "May";
-        }
-        if (userMonth.equals("6") || userMonth.equals("06") || userMonth.equals("june") ||
-                userMonth.equals("June") || userMonth.equals("jun") || userMonth.equals("Jun") ){
-            userMonth = "Jun";
-        }
-        if (userMonth.equals("7") || userMonth.equals("07") || userMonth.equals("july") ||
-                userMonth.equals("July") || userMonth.equals("jul") || userMonth.equals("Jul") ){
-            userMonth = "Jul";
-        }
-        if (userMonth.equals("8") || userMonth.equals("08") || userMonth.equals("august") ||
-                userMonth.equals("August") || userMonth.equals("aug") || userMonth.equals("Aug") ){
-            userMonth = "Aug";
-        }
-        if (userMonth.equals("9") || userMonth.equals("09") || userMonth.equals("september") ||
-                userMonth.equals("September") || userMonth.equals("sep") || userMonth.equals("Sep") ){
-            userMonth = "Sep";
-        }
-        if (userMonth.equals("10") ||  userMonth.equals("october") ||
-                userMonth.equals("October") || userMonth.equals("oct") || userMonth.equals("Oct") ){
-            userMonth = "Oct";
-        }
-        if (userMonth.equals("11") ||  userMonth.equals("november") ||
-                userMonth.equals("November") || userMonth.equals("nov") || userMonth.equals("Nov") ){
-            userMonth = "Nov";
-        }
-        if (userMonth.equals("12") ||  userMonth.equals("december") ||
-                userMonth.equals("December") || userMonth.equals("dec") || userMonth.equals("Dec") ){
-            userMonth = "Dec";
-        }
-
-        String finalUserMonth = userMonth;
         List<Task> taskStream = tasks.stream()
-                .filter(task -> task.getMonth().equals(finalUserMonth))
+                .filter(task -> task.getMonth().equals(userMonth))
                         .toList();
 
             for (Task task : taskStream) {
