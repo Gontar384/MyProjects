@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ControlPanel {
-
+//test
     public static void calculator() {
 
         Scanner sc = new Scanner(System.in);
