@@ -9,7 +9,6 @@ import org.gontar.todolist.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -27,19 +26,20 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> getAllTasks(String username) {
         User user = userService.findByUsername(username);
-        List<Task> allTasks = taskRepository.findByUser(user);
+        List<Task> allTasks = taskRepository.findAllTasksByUser(user);
         return allTasks.stream()
                 .map(mapper::mapToDto)
                 .toList();
     }
 
     @Override
-    public TaskDto findByUserAndId(String username, Long id) {
+    public TaskDto getTask(String username, Long id) {
         User user = userService.findByUsername(username);
         Task task = taskRepository.findTaskByUserAndId(user, id)
                 .orElseThrow(() -> new ResourceNotFound("Task not found"));
         return mapper.mapToDto(task);
     }
+
 
     @Override
     public TaskDto saveTask(String username, TaskDto taskDto) {
@@ -54,8 +54,10 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDto editTask(TaskDto taskDto) {
-        Task task = mapper.mapToEntity(taskDto);
+    public TaskDto editTask(String username, Long id, TaskDto taskDto) {
+        User user = userService.findByUsername(username);
+        Task task = taskRepository.findTaskByUserAndId(user, id)
+                        .orElseThrow(() -> new ResourceNotFound("Task not found"));
         task.setName(taskDto.getName());
         task.setDescription(taskDto.getDescription());
         task.setDone(taskDto.getDone());
@@ -64,8 +66,10 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDto patchTask(TaskDto taskDto) {
-        Task task = mapper.mapToEntity(taskDto);
+    public TaskDto patchTask(String username, Long id, TaskDto taskDto) {
+        User user = userService.findByUsername(username);
+        Task task = taskRepository.findTaskByUserAndId(user, id)
+                .orElseThrow(() -> new ResourceNotFound("Task not found"));
         if (taskDto.getName() != null){
             task.setName(taskDto.getName());
         }
@@ -86,4 +90,6 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(() -> new ResourceNotFound("Task not found"));
         taskRepository.delete(task);
     }
+
+
 }

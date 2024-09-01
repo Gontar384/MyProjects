@@ -25,7 +25,7 @@ public class TaskController {
     @GetMapping("/tasks/{id}")
     public ResponseEntity<TaskDto> getById(@PathVariable String username,
                                            @PathVariable Long id){
-        return ResponseEntity.ok(taskService.findByUserAndId(username, id));
+        return ResponseEntity.ok(taskService.getTask(username, id));
     }
 
     @PostMapping("/tasks")
@@ -38,16 +38,14 @@ public class TaskController {
     public ResponseEntity<TaskDto> edit(@PathVariable String username,
                                         @PathVariable Long id,
                                         @RequestBody TaskDto taskDto){
-        taskService.findByUserAndId(username, id);
-        return ResponseEntity.ok(taskService.editTask(taskDto));
+        return ResponseEntity.ok(taskService.editTask(username, id, taskDto));
     }
 
     @PatchMapping("/tasks/{id}")
     public ResponseEntity<TaskDto> patch(@PathVariable String username,
                                          @PathVariable Long id,
                                          @RequestBody TaskDto taskDto){
-        taskService.findByUserAndId(username, id);
-        return ResponseEntity.ok(taskService.patchTask(taskDto));
+        return ResponseEntity.ok(taskService.patchTask(username, id, taskDto));
     }
 
     @DeleteMapping("/tasks/{id}")
