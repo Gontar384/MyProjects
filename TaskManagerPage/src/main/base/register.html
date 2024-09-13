@@ -48,21 +48,36 @@
     </nav>
     <div class="container">
         <section class="main-content">
-            <h3 class="title">Why?</h3>
-            <p class="note">
-                Are You tired of forgetting what were You about to do?
-                "Forget" about it! Be aware of everything and everywhere.
-                When You have something to do, just open <i>"Task Manager"</i>
-                and write everything down! You'll never forget anything!
-            </p>
-            <img id="happyMan" src="resources/happyMan.jpg" alt="happy man">
-            <img id="happyWoman" src="resources/happyWoman.jpg" alt="happy woman">
-            <img id="happyChildren" src="resources/happyChildren.jpg" alt="happy children">
-
-            <a class="inv" href="login.html" target="_self" title="Login">
-                <p>Log in right now!</p>
+            <div class="loginInfo">
+            <p>If you have an account</p>
+            <a href="login.html">
+                <button>Go login</button>
             </a>
-
+            </div>
+            <div class="registerFill">
+            <form class="registerForm" action="" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" minlength="5" maxlength="20" required><br>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" minlength="5" maxlength="20" required><br>
+                <label>Gender:</label>
+                <label class="radioLabel" for="Male">Male</label>
+                <input class="radioInput" type="radio" id="Male" value="Male" name="Gender">
+                <label class="radioLabel" for="Female">Female</label>
+                <input class="radioInput" type="radio" id="Female" value="Female" name="Gender"><br>
+                <label for="bDay">Birthday:</label>
+                <input class="birthday" type="date" id="bDay"><br>
+                <label for="options">Where have you heard about <b>"Task Manager"</b>?</label><br>
+                <select id="options">
+                    <option value="friend recommendation">friend recommendation</option>
+                    <option value="internet add">internet add</option>
+                    <option value="tv add">tv add</option>
+                    <option value="seen on social media">seen on social media</option>
+                    <option value="by accident">by accident</option>
+                </select> <br>
+                <input type="submit" id="submit">
+            </form>
+            </div>
         </section>
         <aside class="sidebar">
             <ul>
