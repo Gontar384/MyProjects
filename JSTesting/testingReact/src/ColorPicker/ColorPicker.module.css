@@ -1,0 +1,32 @@
+.colorPickerBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.display {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    height: 200px;
+}
+
+.description {
+    font-size: 2rem;
+    font-family: fantasy;
+}
+
+.label {
+    font-family: fantasy;
+    font-size: 2rem;
+}

@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+}
+
+.clockBody {
+    background-image: url("../assets/mountains.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clockContainer {
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    text-align: center;
+}
+
+.clockDisplay {
+    font-size: 9rem;
+    font-family: monospace;
+    text-shadow: 3px 3px 2px black;
+}

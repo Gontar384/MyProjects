@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="passwordGeneratorDisplay">
+<label for="passwordLength">Length:</label>
+<input id="passwordLength" class="generatorInput" type="number" value="5" min="5"> <br>
+<label for="passwordQuantity">Quantity:</label>
+<input id="passwordQuantity" class="generatorInput" type="number" value="1" min="1"> <br>
+<label for="lowercaseChars">Lowercase chars:</label>
+<input id="lowercaseChars" class="generatorInput" type="checkbox"> <br>
+<label for="uppercaseChars">Uppercase chars:</label>
+<input id="uppercaseChars" class="generatorInput" type="checkbox"> <br>
+<label for="numbers">Numbers:</label>
+<input id="numbers" class="generatorInput" type="checkbox"> <br>
+<label for="symbols">Symbols:</label>
+<input id="symbols" class="generatorInput" type="checkbox">
+</div> <br>
+<div class="buttons">
+<button id="generate" class="passwordButton" onclick="passwordGenerator()">Generate</button>
+<button id="clearButton" class="passwordButton" onclick="clearDisplay()">Clear</button>
+</div>
+<p id="passwordDisplay"></p> <br> <br>
+<div class="passwordChecker">
+<label for="checkPassword">Password:</label>
+<input id="checkPassword" class="checkerInput" type="text">
+</div> <br>
+<div class="buttons">
+<button id="check" class="passwordButton" onclick="checkPassword()">Check</button>
+<button id="clearCheck" class="passwordButton" onClick="clearCheck()">Clear</button>
+</div>
+<p id="checkedComm"></p> <br> <br>
+<div class="pageLinks">
+<a href="index1.html" target="_self">
+    <button id="page">Page 2</button>
+</a>
+<a href="index3.html" target="_self">
+    <button id="page">Page 4</button>
+</a>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
