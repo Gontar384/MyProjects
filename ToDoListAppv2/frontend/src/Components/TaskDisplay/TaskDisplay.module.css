@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #c275fe;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+    border-radius: 50px;
+    background-color: #c275fe;
+    margin: 10px 0;
+    min-height: 400px;
+    position: relative;
+}
+
+.box h1 {
+    color: white;
+    font-size: 3rem;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.box h4 {
+    position: absolute;
+    top: 75px;
+    left: -75px;
+    color: white;
+}
+
+.box ol {
+    list-style-type: none;
+    text-align: left;
+}
+
+.box li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    background-color: white;
+    width: 600px;
+    margin: 20px 0;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 15px;
+    font-family: sans-serif;
+    padding: 20px 10px;
+    position: relative;
+}
+
+.taskBox {
+    flex: 1;
+}
+
+.taskBox h5 {
+    font-size: 1.3rem;
+    font-family: sans-serif;
+}
+
+.taskBox h2 {
+    font-family: sans-serif;
+    font-size: 2.2rem;
+}
+
+.taskBox p {
+    font-size: 1.9rem;
+    font-family: sans-serif;
+    max-width: 450px;
+}
+
+.dateBox {
+    position: absolute;
+    left: -50px;
+    color: white;
+}
+
+li button {
+    font-family: sans-serif;
+    font-size: 1.8rem;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: #fe0000;
+    cursor: pointer;
+}
+
+.doneBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 20px;
+}
+
+.doneBox input {
+    height: 30px;
+    width: 30px;
+}
