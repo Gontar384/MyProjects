@@ -8,19 +8,20 @@ import axios from "axios";
 
 function Login() {
 
-    document.title = "Login | Task Manager";
+    document.title = "Task Manager | Login";
     const api = "http://localhost:8080/api/auth/login";
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [info, setInfo] = useState([]);
     const [isActive, setActive] = useState(false);
+    const [inputType, setInputType] = useState("password");
 
     const login = async (username, password) => {
         try {
             const response = await axios.post(`${api}`, {username, password});
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
+            if (response.data) {
+                localStorage.setItem('token', response.data);
                 setInfo(["Logged in successfully!"]);
                 setActive(true);
                 setTimeout(() => {
@@ -48,6 +49,11 @@ function Login() {
         }
     }
 
+    const toggleInputType = () => {
+        setInputType(prevType =>
+            (prevType === "password" ? "text" : "password"));
+    }
+
     return (
         <>
             <TitleNavbar/>
@@ -66,9 +72,10 @@ function Login() {
                            type="text" placeholder="Enter username" required/>
                     <input value={password} onChange={(e) =>
                         setPassword(e.target.value)}
-                           type="password" placeholder="Enter password" required/>
+                           type={inputType} placeholder="Enter password" required/>
+                    <button className={styles.show} onClick={toggleInputType}>Show password</button>
                     <div>
-                        <button onClick={handleLogin}>Submit</button>
+                        <button className={styles.submit} onClick={handleLogin}>Submit</button>
                         <span className={styles.endBox}>
                             <p>You don't have an account?</p>
                             <Link className={styles.link} to="/register">

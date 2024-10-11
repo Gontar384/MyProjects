@@ -33,7 +33,7 @@
     border-radius: 10px;
 }
 
-.box button {
+.submit {
     margin-top: 30px;
     border: none;
     color: black;
@@ -44,7 +44,7 @@
     margin-right: 50px;
 }
 
-.box button:hover {
+.submit:hover {
     background-color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }
@@ -89,4 +89,28 @@
     font-size: 1.4rem;
     list-style-type: none;
     padding: 5px;
+}
+
+.show {
+    position: absolute;
+    height: 32px;
+    width: 60px;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    top: 228px;
+    left: 498px;
+    cursor: pointer;
+}
+
+#show1 {
+    top: 298px;
+    left: 480px;
+}
+
+.show:hover {
+    background-color: rgba(255, 255, 255, 0.8);
 }

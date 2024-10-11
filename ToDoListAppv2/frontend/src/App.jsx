@@ -6,6 +6,7 @@ import TaskDisplay from "./Components/TaskDisplay/TaskDisplay.jsx";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import PrivateRoute from "./Components/PrivateRoute.jsx";
 import PublicRoute from "./Components/PublicRoute.jsx";
+import AppUserInfo from "./Components/AppUserInfo/AppUserInfo.jsx";
 
 
 function App() {
@@ -15,13 +16,14 @@ function App() {
             <Routes>
 
                 <Route element={<PublicRoute/>}>
-                <Route exact path="/register" element={<Register/>}/>
-                <Route exact path="/login" element={<Login/>}/>
+                    <Route exact path="/register" element={<Register/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                 </Route>
 
                 <Route element={<PrivateRoute/>}>
                     <Route exact path="/taskmanager/add" element={<TaskAdd/>}/>
                     <Route exact path="/taskmanager/showall" element={<TaskDisplay/>}/>
+                    <Route exact path="/user/info" element={<AppUserInfo/>}/>
                 </Route>
 
                 <Route path="*" element={<Navigate to="/login"/>}/>

@@ -4,7 +4,7 @@ import Footer from '../../ReusableComponents/Footer.jsx'
 
 function TaskDisplay() {
 
-    document.title = "Task Manager";
+    document.title = "Task Manager | All Tasks";
 
     return (
         <>

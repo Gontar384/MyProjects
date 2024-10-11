@@ -4,7 +4,7 @@ import Footer from '../../ReusableComponents/Footer.jsx'
 
 function TaskAdd() {
 
-    document.title = "Task Manager";
+    document.title = "Task Manager | Add task";
 
     return (
         <>

@@ -1,7 +1,7 @@
 import styles from './ReusableComponents.module.css'
 import {Link, useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faRightFromBracket, faClipboard, faFileCirclePlus} from "@fortawesome/free-solid-svg-icons";
+import {faRightFromBracket, faClipboard, faFileCirclePlus, faUser} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 
 function TitleNavbar() {
@@ -25,15 +25,18 @@ function TitleNavbar() {
     return (
         <>
             <h1 className={styles.title}>Task Manager</h1>
-            <div className={isActive ? styles.active : styles.inactive}>
-                <p className={styles.item}>{info}</p>
-            </div>
             <nav className={styles.navbar}>
+                <div className={isActive ? styles.active : styles.inactive}>
+                    <p className={styles.item}>{info}</p>
+                </div>
                 <Link className={styles.link} to={"/taskmanager/add"}>
-                    <FontAwesomeIcon icon={faFileCirclePlus} size="3x"/>
+                    <FontAwesomeIcon icon={faFileCirclePlus} size="4x"/>
                 </Link>
                 <Link className={styles.link} to={"/taskmanager/showall"}>
-                    <FontAwesomeIcon icon={faClipboard} size="3x"/>
+                    <FontAwesomeIcon icon={faClipboard} size="4x"/>
+                </Link>
+                <Link className={styles.link} to={"/user/info"}>
+                    <FontAwesomeIcon icon={faUser} size="4x"/>
                 </Link>
                 <button className={styles.logout} onClick={logout}>
                     <FontAwesomeIcon icon={faRightFromBracket} size="3x"/>

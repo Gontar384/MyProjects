@@ -1,36 +1,63 @@
 package org.gontar.todolistappv2.Service;
 
+import org.gontar.todolistappv2.Config.JwtConfig.JwtService;
 import org.gontar.todolistappv2.Config.MapperConfig.Mapper;
 import org.gontar.todolistappv2.Model.AppUser;
 import org.gontar.todolistappv2.Model.AppUserDto;
 import org.gontar.todolistappv2.Repository.AppUserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AppUserServiceImpl implements AppUserService {
 
-    private final AppUserRepository appUserRepository;
-    private final Mapper<AppUser, AppUserDto> mapper;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public AppUserServiceImpl(AppUserRepository appUserRepository, Mapper<AppUser, AppUserDto> mapper, BCryptPasswordEncoder passwordEncoder) {
-        this.appUserRepository = appUserRepository;
-        this.mapper = mapper;
+    private final JwtService jwtService;
+    AuthenticationManager authenticationManager;
+    private final AppUserRepository repository;
+    private final PasswordEncoder passwordEncoder;
+    private final Mapper<AppUser, AppUserDto> mapper;
+
+    public AppUserServiceImpl(JwtService jwtService, AuthenticationManager authenticationManager,
+                              AppUserRepository repository, PasswordEncoder passwordEncoder,
+                              Mapper<AppUser, AppUserDto> mapper) {
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+        this.mapper = mapper;
     }
 
     @Override
-    public AppUserDto saveUser(AppUserDto appUserDto) {
+    public void save(AppUserDto appUserDto) {
         AppUser appUser = mapper.mapToEntity(appUserDto);
-        appUser.setUsername(appUserDto.getUsername());
         appUser.setPassword(passwordEncoder.encode(appUserDto.getPassword()));
-        AppUser savedAppUser = appUserRepository.save(appUser);
-        return mapper.mapToDto(savedAppUser);
+        repository.save(appUser);
+        mapper.mapToDto(appUser);
     }
+
+    @Override
+    public String authenticate(AppUserDto appUserDto) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(appUserDto.getUsername(), appUserDto.getPassword()));
+        if (authentication.isAuthenticated()) {
+            return jwtService.generateToken(appUserDto.getUsername());
+        } else {
+            return "fail";
+        }
+    }
+
 
     @Override
     public boolean findByUsername(String username) {
-        return appUserRepository.existsByUsername(username);
+        return repository.existsByUsername(username);
+    }
+
+    @Override
+    public AppUserDto findUserByUsername(String username) {
+        AppUser appUser = repository.findByUsername(username);
+        return mapper.mapToDto(appUser);
     }
 }

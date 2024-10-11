@@ -45,12 +45,18 @@ body{
 }
 
 .active {
-    display: block;
-    width: 200px;
-    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 575px;
+    height: 200px;
     position: absolute;
-    left: 1200px;
-    top: 350px;
+    top: 250px;
+    opacity: 0.85;
+    border-radius: 50px;
+    background-color: #c275fe;
+    z-index: 1;
 }
 
 .inactive {
@@ -60,7 +66,7 @@ body{
 .item {
     word-wrap: break-word;
     font-family: monospace;
-    font-size: 1.4rem;
+    font-size: 3rem;
     list-style-type: none;
     padding: 5px;
 }
@@ -70,7 +76,7 @@ body{
     background-color: #a544f1;
     color: white;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .logout:hover {

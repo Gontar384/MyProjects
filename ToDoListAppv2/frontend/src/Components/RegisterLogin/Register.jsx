@@ -7,7 +7,7 @@ import axios from "axios";
 
 function Register() {
 
-    document.title = "Register | Task Manager";
+    document.title = "Task Manager | Register";
     const api = "http://localhost:8080/api/auth/register";
     const api2 = "http://localhost:8080/api/auth/register/check-username";
     const [appUser, setAppUser] =
@@ -16,6 +16,7 @@ function Register() {
     const [info, setInfo] = useState([]);
     const [isActive, setActive] = useState(false);
     const navigate = useNavigate();
+    const [inputType, setInputType] = useState("password");
 
     const proceed = async () => {
         try {
@@ -29,6 +30,7 @@ function Register() {
             if (isValid) {
                 await saveAppUser();
                 setInfo(["Registered successfully!"]);
+                setActive(true);
                 setTimeout(()=>{
                     navigate("/login");
                 },2000)
@@ -121,6 +123,12 @@ function Register() {
         return pass;
     }
 
+    const toggleInputType = () => {
+        setInputType(prevType =>
+            (prevType === "password" ? "text" : "password"));
+    }
+
+
     return (
         <>
             <TitleNavbar/>
@@ -140,13 +148,13 @@ function Register() {
                     <br/>
                     <input value={appUser.password} onChange={(e) =>
                         setAppUser({...appUser, password: e.target.value})}
-                           type="password" placeholder="Enter password" required/>
+                           type={inputType} placeholder="Enter password" required/>
                     <input value={repeatPassword} onChange={(e) =>
                         setRepeatPassword(e.target.value)}
-                           type="password"
-                           placeholder="Repeat password" required/>
+                           type={inputType} placeholder="Repeat password" required/>
+                    <button id={styles["show1"]} className={styles.show} onClick={toggleInputType}>Show password</button>
                     <div>
-                        <button onClick={proceed}>Submit</button>
+                        <button className={styles.submit} onClick={proceed}>Submit</button>
                         <span className={styles.endBox}>
                             <p>You have an account?</p>
                             <Link className={styles.link} to="/Login">
