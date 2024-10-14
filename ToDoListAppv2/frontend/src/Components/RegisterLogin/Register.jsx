@@ -3,144 +3,77 @@ import TitleNavbar from "../../ReusableComponents/TitleNavbar.jsx";
 import Footer from "../../ReusableComponents/Footer.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
+import {checksPassword} from "../../ReusableComponents/ReusableFunctions.jsx";
+import {useToggleInputType} from "../../ReusableComponents/ReusableFunctions.jsx";
 import axios from "axios";
 
 function Register() {
 
     document.title = "Task Manager | Register";
-    const api = "http://localhost:8080/api/auth/register";
-    const api2 = "http://localhost:8080/api/auth/register/check-username";
+    const url = "http://localhost:8080/api/auth/register/check-username";
+    const url1 = "http://localhost:8080/api/auth/register";
     const [appUser, setAppUser] =
         useState({username: "", password: ""});
     const [repeatPassword, setRepeatPassword] = useState("");
     const [info, setInfo] = useState([]);
+    const [info1, setInfo1] = useState([]);
     const [isActive, setActive] = useState(false);
+    const [isActive1, setActive1] = useState(false);
     const navigate = useNavigate();
-    const [inputType, setInputType] = useState("password");
+    const [inputType, toggleInputType] = useToggleInputType();
 
-    const proceed = async () => {
-        try {
-            const usernameExists = await checkUsername(appUser.username);
-            if (usernameExists) {
-                setInfo(["Username already exists"]);
-                setActive(true);
-                return;
-            }
-            const isValid = checkPassword();
-            if (isValid) {
-                await saveAppUser();
-                setInfo(["Registered successfully!"]);
-                setActive(true);
-                setTimeout(()=>{
-                    navigate("/login");
-                },2000)
-                console.log("User data sent");
-            }else {
-                setActive(true);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const saveAppUser = async () => {
-        try {
-            await axios.post(`${api}`, appUser);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const checkUsername = async (username) => {
-        try {
-            const response = await axios.get(`${api2}`, {
-                params: {username},
-            });
-            return response.data["exists"];
-        } catch (error) {
-            console.log("Error with username", error);
-        }
-    }
-
-    const checkPassword = () => {
-
-        let isValid;
-        let pass = false;
-        const numbers = "0123456789";
-        let isLongEnough = false;
-        let includeLowercase = false;
-        let includeUppercase = false;
-        let includeNumbers = false;
-
-        setInfo([]);
-
-        if (appUser.password.trim().length >= 5) {
-            isLongEnough = true;
-            if (appUser.password.toUpperCase() !== appUser.password) {
-                includeLowercase = true;
-            } else {
-                setInfo(i => [...i,
-                    "Password must include at least one lowercase char"
-                ]);
-            }
-            if (appUser.password.toLowerCase() !== appUser.password) {
-                includeUppercase = true;
-            } else {
-                setInfo(i => [...i,
-                    "Password must include at least one uppercase char"
-                ]);
-            }
-            for (let i = 0; i < appUser.password.length; i++) {
-                for (let j = 0; j < numbers.length; j++) {
-                    if (appUser.password.charAt(i) === numbers.charAt(j)) {
-                        includeNumbers = true;
-                    }
+    const handleRegister = async () => {
+        if (appUser.username && appUser.password && repeatPassword) {
+            try {
+                const usernameExists = await axios.get(`${url}`, {
+                    params: {username: appUser.username},
+                });
+                if (usernameExists.data["exists"]) {
+                    setInfo(["Username already exists"]);
+                    setActive(true);
+                    return null;
                 }
-            }
-            if (includeNumbers === false) {
-                setInfo(i => [...i,
-                    "Password must include at least one number"
-                ]);
+                if (checksPassword(appUser.password).length !== 0) {
+                    setInfo([checksPassword(appUser.password).join(" ")]);
+                    setActive(true);
+                    return null;
+                }
+                if (appUser.password !== repeatPassword) {
+                    setInfo(["Passwords do not match"]);
+                    setActive(true);
+                    return null;
+                }
+                await axios.post(`${url1}`, appUser);
+                setActive(false);
+                setInfo1(["Registered successfully"]);
+                setActive1(true);
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000)
+            } catch (error) {
+                if (error) {
+                    setInfo(["Something went wrong"]);
+                    setActive(true);
+                }
+                console.log("Error during register process", error);
             }
         } else {
-            setInfo(i => [...i,
-                "Password must be at least 5 chars long"
-            ]);
+            setInfo(["Please fill all fields"]);
+            setActive(true);
         }
-        isValid = isLongEnough === true && includeLowercase === true &&
-            includeUppercase === true && includeNumbers === true;
-
-        if (isValid) {
-            if (appUser.password === repeatPassword) {
-                pass = true;
-            } else {
-                setInfo([
-                    "Repeated password must be like the first one!"
-                ]);
-            }
-        }
-
-        return pass;
     }
-
-    const toggleInputType = () => {
-        setInputType(prevType =>
-            (prevType === "password" ? "text" : "password"));
-    }
-
 
     return (
         <>
             <TitleNavbar/>
             <div className={styles.container}>
                 <div className={styles.box}>
+                    <div className={isActive1 ? styles.active1 : styles.inactive1}>
+                        <p className={styles.item1}>{info1}</p>
+                    </div>
                     <h1>Register:</h1>
                     <div className={isActive ? styles.active : styles.inactive}>
-                        <ol>
-                            {info.map((item, index) => (
-                                <li className={styles.item} key={index}>{item}</li>
-                            ))}
-                        </ol>
+                        <pre className={styles.item}>{info}</pre>
                     </div>
                     <input value={appUser.username} onChange={(e) =>
                         setAppUser({...appUser, username: e.target.value})}
@@ -152,9 +85,10 @@ function Register() {
                     <input value={repeatPassword} onChange={(e) =>
                         setRepeatPassword(e.target.value)}
                            type={inputType} placeholder="Repeat password" required/>
-                    <button id={styles["show1"]} className={styles.show} onClick={toggleInputType}>Show password</button>
+                    <button id={styles["show1"]} className={styles.show} onClick={toggleInputType}>Show password
+                    </button>
                     <div>
-                        <button className={styles.submit} onClick={proceed}>Submit</button>
+                        <button className={styles.submit} onClick={handleRegister}>Submit</button>
                         <span className={styles.endBox}>
                             <p>You have an account?</p>
                             <Link className={styles.link} to="/Login">

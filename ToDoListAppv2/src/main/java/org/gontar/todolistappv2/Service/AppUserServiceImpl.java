@@ -36,7 +36,6 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser appUser = mapper.mapToEntity(appUserDto);
         appUser.setPassword(passwordEncoder.encode(appUserDto.getPassword()));
         repository.save(appUser);
-        mapper.mapToDto(appUser);
     }
 
     @Override
@@ -45,10 +44,9 @@ public class AppUserServiceImpl implements AppUserService {
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(appUserDto.getUsername());
         } else {
-            return "fail";
+            return "Authentication failed";
         }
     }
-
 
     @Override
     public boolean findByUsername(String username) {
@@ -56,8 +54,29 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public AppUserDto findUserByUsername(String username) {
+    public AppUser findAppUserByUsername(String username) {
+        return repository.findByUsername(username);
+    }
+
+    @Override
+    public AppUserDto getAppUserInfo(String username) {
         AppUser appUser = repository.findByUsername(username);
         return mapper.mapToDto(appUser);
+    }
+
+    @Override
+    public boolean checkPassword(String password, AppUser appUser) {
+        return passwordEncoder.matches(password, appUser.getPassword());
+    }
+
+    @Override
+    public void changePassword(String password, AppUser appUser) {
+        appUser.setPassword(passwordEncoder.encode(password));
+        repository.save(appUser);
+    }
+
+    @Override
+    public void delete(AppUser appUser) {
+        repository.delete(appUser);
     }
 }

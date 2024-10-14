@@ -10,17 +10,19 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 450px;
     height: 500px;
     position: relative;
+    text-align: left;
 }
 
-.box p {
+.p {
     color: white;
     font-family: monospace;
     padding: 10px;
     margin: 10px;
-    font-size: 2.7em;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .box h2 {
@@ -30,8 +32,8 @@
 
 .form input {
     border: none;
-    width: 250px;
-    font-size: 1.8rem;
+    width: 300px;
+    font-size: 2.2rem;
     text-align: center;
     margin-top: 20px;
     border-radius: 5px;
@@ -44,13 +46,14 @@
     align-items: center;
 }
 
-.form button {
+.changeButton {
     margin-top: 30px;
     border: none;
-    width: 140px;
-    height: 20px;
+    width: 220px;
+    height: 35px;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .deleteBox {
@@ -61,19 +64,124 @@
     position: relative;
 }
 
-.deleteBox h5 {
-    width: 100px;
+.deleteBox p {
+    color: white;
+    font-size: 1.2rem;
+    width: 150px;
     text-align: center;
 }
 
 .deleteBox button {
-    margin-top: 5px;
+    margin-top: 10px;
     border: none;
     width: 80px;
     position: absolute;
-    right: 10px;
+    right: 35px;
     top: 40px;
+    font-size: 1.4rem;
     color: white;
     border-radius: 5px;
-    background-color: black;
+    background-color: red;
+    cursor: pointer;
+}
+
+.active {
+    display: block;
+    max-width: 360px;
+    position: absolute;
+    left: -300px;
+    top: 200px;
+    z-index: 1;
+}
+
+.inactive {
+    display: none;
+}
+
+.item {
+    word-wrap: break-word;
+    white-space: break-spaces;
+    font-family: monospace;
+    font-size: 1.4rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.active1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 430px;
+    height: 200px;
+    position: absolute;
+    top: 100px;
+    background-color: #a544f1;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+.active1 button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.inactive1 {
+    display: none;
+}
+
+.item1 {
+    font-family: monospace;
+    font-size: 2rem;
+    padding: 5px;
+    text-align: center;
+}
+
+.show {
+    position: absolute;
+    height: 28px;
+    width: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    top: 202px;
+    left: 390px;
+    cursor: pointer;
+}
+
+.active2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 620px;
+    height: 350px;
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    opacity: 0.85;
+    border-radius: 50px;
+    background-color: #c275fe;
+    z-index: 1;
+}
+
+.inactive2 {
+    display: none;
+}
+
+.item2 {
+    font-family: monospace;
+    font-size: 3rem;
+    padding: 5px;
+    text-align: center;
+    color: black;
 }

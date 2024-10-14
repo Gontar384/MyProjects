@@ -5,11 +5,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MapperImpl implements Mapper<AppUser, AppUserDto> {
+public class AppUserMapperImpl implements Mapper<AppUser, AppUserDto> {
 
     private final ModelMapper mapper;
 
-    public MapperImpl(ModelMapper mapper) {
+    public AppUserMapperImpl(ModelMapper mapper) {
         this.mapper = mapper;
     }
 

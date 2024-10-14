@@ -3,8 +3,8 @@ import TitleNavbar from "../../ReusableComponents/TitleNavbar.jsx";
 import Footer from "../../ReusableComponents/Footer.jsx";
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {useToggleInputType} from "../../ReusableComponents/ReusableFunctions.jsx";
 import axios from "axios";
-
 
 function Login() {
 
@@ -15,43 +15,38 @@ function Login() {
     const navigate = useNavigate();
     const [info, setInfo] = useState([]);
     const [isActive, setActive] = useState(false);
-    const [inputType, setInputType] = useState("password");
+    const [info1, setInfo1] = useState([]);
+    const [isActive1, setActive1] = useState(false);
+    const [inputType, toggleInputType] = useToggleInputType();
 
-    const login = async (username, password) => {
-        try {
-            const response = await axios.post(`${api}`, {username, password});
-            if (response.data) {
-                localStorage.setItem('token', response.data);
-                setInfo(["Logged in successfully!"]);
-                setActive(true);
-                setTimeout(() => {
-                    navigate("/taskmanager/showall");
-                }, 2000)
+    const handleLogin = async () => {
+        if (username && password) {
+            try {
+                const response = await axios.post(`${api}`, {username, password});
+                if (response.data) {
+                    localStorage.setItem('token', response.data);
+                    setActive(false);
+                    setInfo1(["Logging in..."]);
+                    setActive1(true);
+                    setTimeout(() => {
+                        window.location.reload();
+                        navigate("/taskmanager/showall");
+                    }, 2000)
+                }
+            } catch (error) {
+                console.log(error);
+                if (error.response) {
+                    setInfo(["Wrong username or password"]);
+                    setActive(true);
+                } else {
+                    setInfo(["Login failed, please try again"]);
+                    setActive(true);
+                }
             }
-        } catch (error) {
-            console.log(error);
-            if (error.response) {
-                setInfo(["Wrong username or password"]);
-                setActive(true);
-            } else {
-                setInfo(["Login failed, please try again"]);
-                setActive(true);
-            }
+        } else {
+            setInfo(["Please fill all fields"]);
+            setActive(true);
         }
-    };
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            await login(username, password);
-        } catch (error) {
-            console.log("Login failed", error);
-        }
-    }
-
-    const toggleInputType = () => {
-        setInputType(prevType =>
-            (prevType === "password" ? "text" : "password"));
     }
 
     return (
@@ -59,6 +54,9 @@ function Login() {
             <TitleNavbar/>
             <div className={styles.container}>
                 <div className={styles.box}>
+                    <div className={isActive1 ? styles.active1 : styles.inactive1}>
+                        <p className={styles.item1}>{info1}</p>
+                    </div>
                     <h1>Log in:</h1>
                     <div className={isActive ? styles.active : styles.inactive}>
                         <ol>

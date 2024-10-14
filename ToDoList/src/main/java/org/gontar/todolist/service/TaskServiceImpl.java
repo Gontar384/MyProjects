@@ -22,7 +22,6 @@ public class TaskServiceImpl implements TaskService {
         this.mapper = mapper;
     }
 
-
     @Override
     public List<TaskDto> getAllTasks(String username) {
         User user = userService.findByUsername(username);

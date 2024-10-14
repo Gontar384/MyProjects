@@ -5,23 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class AppUser {
+public class Task {
     @Id
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
-    private String password;
+    private String description;
 
-    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+    @Column(nullable = false)
+    private String date;
+
+    @Column(nullable = false)
+    private Boolean done;
+
+    @ManyToOne
+    @JoinColumn(name = "app_user_id")
+    private AppUser appUser;
 }

@@ -25,7 +25,7 @@
 }
 
 .box input {
-    font-size: 2rem;
+    font-size: 2.4rem;
     border: none;
     font-family: sans-serif;
     margin-bottom: 15px;
@@ -35,7 +35,7 @@
 .box textarea {
     border-radius: 6px;
     resize: none;
-    font-size: 1rem;
+    font-size: 1.9rem;
     font-family: sans-serif;
 }
 
@@ -59,4 +59,23 @@
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
+}
+
+.active {
+    display: block;
+    max-width: 360px;
+    position: absolute;
+    left: -340px;
+    top: 178px;
+}
+
+.inactive {
+    display: none;
+}
+
+.item {
+    font-family: monospace;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
 }
