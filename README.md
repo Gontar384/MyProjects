@@ -1,1 +1,1 @@
-Hello, I'm new in programming world! Been learning for a few months and I try to publish there some of my small projects, which I learn on. Have a nice day!
+Hello, I'm new in programming world! Been learning for a few months and publishing some of my small projects there! Feel free to leave a comments and suggestions. Have a nice day!
