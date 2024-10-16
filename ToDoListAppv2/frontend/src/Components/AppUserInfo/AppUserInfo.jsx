@@ -9,10 +9,10 @@ import {useNavigate} from "react-router-dom";
 function AppUserInfo() {
 
     document.title = "Task Manager | User";
-    const url = "http://localhost:8080/api/user-info";
-    const url1 = "http://localhost:8080/api/check-password";
-    const url2 = "http://localhost:8080/api/change-password";
-    const url3 = "http://localhost:8080/api/user-delete";
+    const url = `${import.meta.env.VITE_BACKEND_URL}api/user-info`;
+    const url1 = `${import.meta.env.VITE_BACKEND_URL}api/check-password`;
+    const url2 = `${import.meta.env.VITE_BACKEND_URL}api/change-password`;
+    const url3 = `${import.meta.env.VITE_BACKEND_URL}api/user-delete`;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [updated, setUpdated] = useState("");

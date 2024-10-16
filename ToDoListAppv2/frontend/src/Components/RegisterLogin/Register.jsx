@@ -10,8 +10,8 @@ import axios from "axios";
 function Register() {
 
     document.title = "Task Manager | Register";
-    const url = "http://localhost:8080/api/auth/register/check-username";
-    const url1 = "http://localhost:8080/api/auth/register";
+    const url = `${import.meta.env.VITE_BACKEND_URL}api/auth/register/check-username`;
+    const url1 = `${import.meta.env.VITE_BACKEND_URL}api/auth/register`;
     const [appUser, setAppUser] =
         useState({username: "", password: ""});
     const [repeatPassword, setRepeatPassword] = useState("");

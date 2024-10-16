@@ -9,7 +9,7 @@ import axios from "axios";
 function Login() {
 
     document.title = "Task Manager | Login";
-    const api = "http://localhost:8080/api/auth/login";
+    const api = `${import.meta.env.VITE_BACKEND_URL}api/auth/login`;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();

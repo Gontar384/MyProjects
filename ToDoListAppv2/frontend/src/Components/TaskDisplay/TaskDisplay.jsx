@@ -7,9 +7,9 @@ import api from "../AxiosConfig.jsx";
 function TaskDisplay() {
 
     document.title = "Task Manager | All Tasks";
-    const url = "http://localhost:8080/api/task-show-all";
-    const url1 = "http://localhost:8080/api/task-delete";
-    const url2 = "http://localhost:8080/api/task-isdone";
+    const url = `${import.meta.env.VITE_BACKEND_URL}api/task-show-all`;
+    const url1 = `${import.meta.env.VITE_BACKEND_URL}api/task-delete`;
+    const url2 = `${import.meta.env.VITE_BACKEND_URL}api/task-isdone`;
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {

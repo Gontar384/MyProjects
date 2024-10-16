@@ -7,7 +7,7 @@ import api from "../AxiosConfig.jsx";
 function TaskAdd() {
 
     document.title = "Task Manager | Add task";
-    const url = "http://localhost:8080/api/task-add"
+    const url = `${import.meta.env.VITE_BACKEND_URL}api/task-add`
     const [task, setTask] = useState({
         name: "", description: "", date: "", done: false
     })
