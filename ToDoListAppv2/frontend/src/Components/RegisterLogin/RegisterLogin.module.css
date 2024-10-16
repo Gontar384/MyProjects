@@ -9,12 +9,12 @@
 .box {
     display: flex;
     flex-direction: column;
+    position: relative;
     border: 1px solid #000000;
-    padding: 60px 80px 80px;
+    padding: 60px 100px 100px;
     border-radius: 50px;
     background-color: #a544f1;
     margin: 10px 0;
-    position: relative;
 }
 
 .box h1 {
@@ -49,10 +49,17 @@
     cursor: pointer;
 }
 
+.endingBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .endBox {
     display: inline-block;
     text-align: center;
     text-decoration: none;
+    margin-top: 30px;
 }
 
 .endBox p {
@@ -74,7 +81,7 @@
     display: block;
     max-width: 360px;
     position: absolute;
-    left: -360px;
+    left: -375px;
     top: 178px;
 }
 
@@ -89,7 +96,10 @@
     font-size: 1.4rem;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .active1 {
@@ -97,11 +107,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 575px;
-    height: 300px;
+    width: 600px;
+    height: 530px;
     position: absolute;
+    top: -20px;
     left: -5px;
-    top: 70px;
     opacity: 0.85;
     background-color: #c275fe;
     z-index: 1;
@@ -119,8 +129,14 @@
     text-align: center;
 }
 
+.toggleBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .show {
-    position: absolute;
+
     height: 32px;
     width: 60px;
     text-align: center;
@@ -129,8 +145,6 @@
     border: none;
     border-radius: 5px;
     font-size: 0.8rem;
-    top: 228px;
-    left: 498px;
     cursor: pointer;
 }
 
@@ -141,4 +155,21 @@
 
 .show:hover {
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        padding: 60px 40px 200px;
+    }
+
+    .active {
+        left: 65px;
+        top: 480px;
+    }
+
+    .active1 {
+        width: 480px;
+        left: -5px;
+        top: -15px;
+    }
 }

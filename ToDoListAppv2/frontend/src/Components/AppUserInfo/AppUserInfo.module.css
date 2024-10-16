@@ -92,6 +92,10 @@
     left: -300px;
     top: 200px;
     z-index: 1;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: 2px 2px 2px black;
 }
 
 .inactive {
@@ -116,7 +120,8 @@
     width: 430px;
     height: 200px;
     position: absolute;
-    top: 100px;
+    top: 105px;
+    left: 10px;
     background-color: #a544f1;
     border-radius: 50px;
     z-index: 1;
@@ -164,7 +169,7 @@
     justify-content: center;
     align-items: center;
     width: 620px;
-    height: 350px;
+    height: 450px;
     position: absolute;
     top: 20px;
     left: -100px;
@@ -184,4 +189,18 @@
     padding: 5px;
     text-align: center;
     color: black;
+}
+
+@media screen and (max-width: 700px) {
+    .active {
+        top: 350px;
+        left: 20px;
+    }
+    .item {
+        width: 250px;
+    }
+    .active2 {
+        width: 425px;
+        left: 30px;
+    }
 }

@@ -6,7 +6,7 @@ import {useState} from "react";
 
 function TitleNavbar() {
 
-    const [isActive, setActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
     const [info, setInfo] = useState("");
     const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ function TitleNavbar() {
         if (localStorage.getItem('token')) {
             localStorage.removeItem('token');
             setInfo("Logging out...")
-            setActive(true);
+            setIsActive(true);
             setTimeout(() => {
                 navigate('/login')
             }, 2000)

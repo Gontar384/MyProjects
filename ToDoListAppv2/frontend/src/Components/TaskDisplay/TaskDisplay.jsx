@@ -52,7 +52,7 @@ function TaskDisplay() {
             <TitleNavbar/>
             <div className={styles.container}>
                 <div className={styles.box}>
-                    <h1>All tasks to do:</h1>
+                    <h1>Tasks to do:</h1>
                     <ol>
                         {tasks.map((item, index) =>
                             <li key={index}>

@@ -77,17 +77,22 @@ function Register() {
                     </div>
                     <input value={appUser.username} onChange={(e) =>
                         setAppUser({...appUser, username: e.target.value})}
-                           type="text" placeholder="Enter username" required/>
+                           type="text" placeholder="Enter username" required
+                           onClick={() => setActive(false)}/>
                     <br/>
                     <input value={appUser.password} onChange={(e) =>
                         setAppUser({...appUser, password: e.target.value})}
-                           type={inputType} placeholder="Enter password" required/>
+                           type={inputType} placeholder="Enter password" required
+                           onClick={() => setActive(false)}/>
                     <input value={repeatPassword} onChange={(e) =>
                         setRepeatPassword(e.target.value)}
-                           type={inputType} placeholder="Repeat password" required/>
-                    <button id={styles["show1"]} className={styles.show} onClick={toggleInputType}>Show password
-                    </button>
-                    <div>
+                           type={inputType} placeholder="Repeat password" required
+                           onClick={() => setActive(false)}/>
+                    <div className={styles.toggleBox}>
+                        <button id={styles["show1"]} className={styles.show} onClick={toggleInputType}>Show password
+                        </button>
+                    </div>
+                    <div className={styles.endingBox}>
                         <button className={styles.submit} onClick={handleRegister}>Submit</button>
                         <span className={styles.endBox}>
                             <p>You have an account?</p>

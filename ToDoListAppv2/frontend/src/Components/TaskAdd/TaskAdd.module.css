@@ -63,10 +63,10 @@
 
 .active {
     display: block;
-    max-width: 360px;
+    max-width: 300px;
     position: absolute;
     left: -340px;
-    top: 178px;
+    top: 195px;
 }
 
 .inactive {
@@ -75,7 +75,30 @@
 
 .item {
     font-family: monospace;
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0;
-    padding: 0;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: 2px 2px 2px black;
+}
+
+@media screen and (max-width: 700px) {
+
+    .box {
+        margin-bottom: 80px;
+    }
+
+    .box input {
+        font-size: 2rem;
+    }
+
+    .active {
+        left: 40px;
+        top: 500px;
+    }
+
+    .item {
+        font-size: 1.7rem;
+    }
 }

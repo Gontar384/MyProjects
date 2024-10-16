@@ -109,16 +109,18 @@ function AppUserInfo() {
                     <div className={styles.form}>
                         <input value={password} onChange={(e) =>
                             setPassword(e.target.value)} placeholder="Old Password"
-                               type={inputType}/>
+                               type={inputType} onClick={() => setActive(false)}/>
                         <input value={updated} onChange={(e) =>
                             setUpdated(e.target.value)} placeholder="New Password"
-                               type={inputType}/>
+                               type={inputType} onClick={() => setActive(false)}/>
                         <button className={styles.changeButton} onClick={handlePasswordChange}>Change password</button>
                         <button className={styles.show} onClick={toggleInputType}>Show password</button>
                     </div>
                     <div className={styles.deleteBox}>
                         <p>DoubleClick to delete account</p>
-                        <button onDoubleClick={() => setActive1(true)}>Delete</button>
+                        <button onDoubleClick={() => setActive1(true)}
+                                onClick={() => setActive(false)}>Delete
+                        </button>
                     </div>
                 </div>
             </div>

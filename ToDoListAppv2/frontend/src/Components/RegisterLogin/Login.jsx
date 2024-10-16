@@ -67,15 +67,19 @@ function Login() {
                     </div>
                     <input value={username} onChange={(e) =>
                         setUsername(e.target.value)}
-                           type="text" placeholder="Enter username" required/>
+                           type="text" placeholder="Enter username" required
+                           onClick={() => setActive(false)}/>
                     <input value={password} onChange={(e) =>
                         setPassword(e.target.value)}
-                           type={inputType} placeholder="Enter password" required/>
-                    <button className={styles.show} onClick={toggleInputType}>Show password</button>
-                    <div>
+                           type={inputType} placeholder="Enter password" required
+                           onClick={() => setActive(false)}/>
+                    <div className={styles.toggleBox}>
+                        <button className={styles.show} onClick={toggleInputType}>Show password</button>
+                    </div>
+                    <div className={styles.endingBox}>
                         <button className={styles.submit} onClick={handleLogin}>Submit</button>
                         <span className={styles.endBox}>
-                            <p>You don't have an account?</p>
+                            <p>No account?</p>
                             <Link className={styles.link} to="/register">
                                 <p>Register here!</p>
                             </Link>
