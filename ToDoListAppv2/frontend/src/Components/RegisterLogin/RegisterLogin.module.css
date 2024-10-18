@@ -136,7 +136,8 @@
 }
 
 .show {
-
+    text-decoration: none;
+    color: black;
     height: 32px;
     width: 60px;
     text-align: center;
