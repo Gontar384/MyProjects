@@ -91,34 +91,14 @@ li button {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 420px){
-    .box li {
-        width: 400px;
-    }
-    .taskBox {
-        flex: 1;
-        width: 270px;
-    }
-    .taskBox h2 {
-        font-size: 1.2rem;
-    }
-    .taskBox p {
-        font-size: 1rem;
-        width: 250px;
-    }
-    .taskBox h5 {
-        font-size: 0.9rem;
-    }
-}
-
 @media screen and (max-width: 700px) {
     .box li {
-        width: 470px;
+        width: 350px;
     }
 
     .taskBox {
         flex: 1;
-        width: 340px;
+        width: 220px;
     }
 
     .taskBox h2 {
@@ -132,6 +112,17 @@ li button {
 
     .taskBox h5 {
         font-size: 1.2rem;
+    }
+
+    li button {
+        width: 80px;
+        font-size: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .doneBox input {
+        width: 20px;
+        height: 20px;
     }
 
 }

@@ -6,11 +6,11 @@ export default defineConfig({
         build: {
             outDir: 'dist',
         },
-        base: '/',
+        base: "/",
         server: {
             proxy: {
                 '/api': {
-                    target: 'http://localhost:8080/',
+                    target: import.meta.env.VITE_BACKEND_URL,
                     changeOrigin: true,
                     rewrite: (path) => path.replace(/^\/api/, '')
                 }

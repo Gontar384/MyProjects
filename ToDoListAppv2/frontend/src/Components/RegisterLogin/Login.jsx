@@ -66,7 +66,7 @@ function Login() {
                         </ol>
                     </div>
                     <input value={username} onChange={(e) =>
-                        setUsername(e.target.value)}
+                        setUsername(e.target.value.trim())}
                            type="text" placeholder="Enter username" required
                            onClick={() => setActive(false)}/>
                     <input value={password} onChange={(e) =>

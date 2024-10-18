@@ -76,7 +76,7 @@ function Register() {
                         <pre className={styles.item}>{info}</pre>
                     </div>
                     <input value={appUser.username} onChange={(e) =>
-                        setAppUser({...appUser, username: e.target.value})}
+                        setAppUser({...appUser, username: e.target.value.trim()})}
                            type="text" placeholder="Enter username" required
                            onClick={() => setActive(false)}/>
                     <br/>
