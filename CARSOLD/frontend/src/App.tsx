@@ -1,11 +1,10 @@
-import Home from "./Home/Home.tsx";
+import LoginRegister from "./LoginRegister/LoginRegister.tsx";
 
 function App() {
 
     return (
         <>
-            <Home/>
-
+            <LoginRegister/>
         </>
     )
 }

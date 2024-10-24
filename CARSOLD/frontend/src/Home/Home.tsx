@@ -1,6 +1,5 @@
 import NavBar from "../NavBar/NavBar.tsx";
 // import {useEffect, useState} from "react";
-import LoginRegister from '../LoginRegister/LoginRegister.tsx'
 
 function Home() {
 
@@ -16,7 +15,6 @@ function Home() {
     return (
         <>
             <NavBar/>
-            <LoginRegister/>
         </>
     )
 }
